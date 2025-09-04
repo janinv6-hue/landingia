@@ -23,12 +23,23 @@ import {
   Facebook,
   Globe,
   Music,
+  ChevronUp,
 } from "lucide-react"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function AICourseLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [showScrollTop, setShowScrollTop] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -36,6 +47,10 @@ export default function AICourseLanding() {
       element.scrollIntoView({ behavior: "smooth" })
       setIsMenuOpen(false)
     }
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   return (
@@ -113,7 +128,7 @@ export default function AICourseLanding() {
                   <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </button>
                 <div className="border-t pt-2 mt-2">
-                  <Button size="sm" className="w-full rounded-full">
+                  <Button size="sm" className="w-full rounded-full" style={{ backgroundColor: "#f19e0e", borderColor: "#f19e0e" }}>
                     <MessageCircle className="w-4 h-4 mr-2" />
                     Inscríbete Ahora
                   </Button>
@@ -122,6 +137,17 @@ export default function AICourseLanding() {
             </div>
           )}
         </div>
+
+        {/* Scroll to Top Button */}
+        {showScrollTop && (
+          <Button
+            onClick={scrollToTop}
+            size="icon"
+            className="rounded-full w-12 h-12 bg-secondary/90 hover:bg-secondary shadow-lg backdrop-blur-sm border-2 border-secondary/50 transition-all duration-300 hover:scale-110"
+          >
+            <ChevronUp className="w-5 h-5 text-white" />
+          </Button>
+        )}
       </div>
 
       {/* Hero Section */}
@@ -137,11 +163,11 @@ export default function AICourseLanding() {
           <div className="text-center space-y-8 max-w-4xl mx-auto">
             <div className="space-y-6 fade-in-up astro-floating">
               <Image
-                src="/images/Logo-Black.png"
+                src="/images/Logo Original.png"
                 alt="TOP LEARNING"
                 width={300}
                 height={120}
-                className="mx-auto h-20 w-auto astro-glow-effect brightness-0 invert"
+                className="mx-auto h-20 w-auto astro-glow-effect"
                 priority
               />
 
@@ -1061,11 +1087,11 @@ export default function AICourseLanding() {
           <div className="text-center space-y-8">
             <div className="space-y-4">
               <Image
-                src="/images/Logo-Black.png"
+                src="/images/Logo Original.png"
                 alt="TOP LEARNING"
                 width={200}
                 height={80}
-                className="mx-auto h-12 w-auto brightness-0 invert mb-4"
+                className="mx-auto h-12 w-auto mb-4"
               />
               <h3 className="text-xl font-bold bg-gradient-to-r from-[#6a6ae2] to-secondary bg-clip-text text-transparent">
                 Síguenos en nuestras redes sociales
