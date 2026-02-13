@@ -225,7 +225,7 @@ const HeroSection = memo(() => {
 
               <div className="space-y-2">
                 <p className="text-secondary font-semibold text-lg tracking-wide uppercase astro-shimmer">
-                  Diplomado de Inteligencia Artificial
+                  Diplomado de Inteligencia Artificial y n8n
                 </p>
                 
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-white text-balance leading-tight">
